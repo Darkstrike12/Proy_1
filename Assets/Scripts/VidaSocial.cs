@@ -54,7 +54,8 @@ public class VidaSocial : MonoBehaviour
             AudioDeath.Play();
         }
     }
-    void Muerte()
+
+    public void Muerte()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
