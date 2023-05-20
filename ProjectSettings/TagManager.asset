@@ -7,6 +7,8 @@ TagManager:
   - cherry
   - gem
   - trap
+  - Enemy
+  - Enemy_Damaged
   layers:
   - Default
   - TransparentFX

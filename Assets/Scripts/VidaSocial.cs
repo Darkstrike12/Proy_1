@@ -29,6 +29,14 @@ public class VidaSocial : MonoBehaviour
             VidaActual = VidaActual -25;
             AudioHurt.Play();
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetTrigger("hurt");
+            Invoke("ResetHurtTrigger", 0.2f);
+            VidaActual = VidaActual - 25;
+            AudioHurt.Play();
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
