@@ -8,12 +8,17 @@ public class JefeWW : MonoBehaviour
     [SerializeField] public Transform Player;
 
     [Header("Variables")] 
-    [SerializeField] float Distance;
+    [SerializeField] public float Distance;
+    bool FaceRight = true;
     Animator animator;
     SpriteRenderer spriteRenderer;
-    Rigidbody2D rigidbody2D;
 
-    [Space]
+    [Header("Ataque")]
+    [SerializeField] float AttkTimer;
+    [SerializeField] float CurrentAttkTimer;
+    [SerializeField] int AttkOrder;
+
+    [Header("Vida Jefe")]
     //[Range(1,20)]
     [SerializeField] int BossMaxLife;
     [SerializeField] int BossDmgTaken;
@@ -23,30 +28,40 @@ public class JefeWW : MonoBehaviour
     {
         animator= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
-        rigidbody2D= GetComponent<Rigidbody2D>();
+        AttkTimer = CurrentAttkTimer;
+        BossMaxLife = BossCurrentLife;
     }
     
     void Update()
     {
         Distance = Vector2.Distance(transform.position, Player.position);
-        //FacePlayer(Player.position);
+        CurrentAttkTimer -= Time.deltaTime;
+        //FacePlayer();
+
+        switch ( AttkOrder )
+        {
+            case 1:
+                animator.SetTrigger("RunStart");
+                break;
+        }
     }
 
-    public void FacePlayer(Vector3 Objective)
+    public void FacePlayer()
     {
-        if (transform.position.x > Objective.x)
+        if ((Player.position.x > transform.position.x && !FaceRight) || (Player.position.x < transform.position.x && FaceRight))
         {
-            //spriteRenderer.flipX= true;
+            FaceRight = !FaceRight;
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
-        }
-        else
-        {
-            spriteRenderer.flipX= false;
         }
     }
 
     void BossDeath()
     {
 
+    }
+
+    void TakeDamage(int value)
+    {
+        BossCurrentLife -= value;
     }
 }
