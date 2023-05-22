@@ -19,16 +19,7 @@ public class VidaSocial : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("trap"))
-        {
-            animator.SetTrigger("hurt");
-            Invoke("ResetHurtTrigger", 0.2f);
-            VidaActual = VidaActual -25;
-            AudioHurt.Play();
-        }
+        VidaActual = VidaMaxima;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,7 +29,7 @@ public class VidaSocial : MonoBehaviour
             VidaActual = VidaActual + 10;
         }
     }
-   
+    
     void ResetHurtTrigger()
     {
         animator.ResetTrigger("hurt");
@@ -47,6 +38,10 @@ public class VidaSocial : MonoBehaviour
     void Update()
     {
         vida.fillAmount = VidaActual / VidaMaxima;
+        if (VidaActual > VidaMaxima)
+        {
+            VidaActual = VidaMaxima;
+        }
         if (VidaActual <= 0)
         {
             animator.SetTrigger("Death");
@@ -55,8 +50,21 @@ public class VidaSocial : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float DmgValue)
+    {
+        VidaActual -= DmgValue;
+        animator.SetTrigger("hurt");
+        Invoke("ResetHurtTrigger", 0.2f);
+    }
+
+    public void Heal(float HealValue)
+    {
+        VidaActual += HealValue;
+    }
+
     public void Muerte()
     {
+        //Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
