@@ -21,6 +21,7 @@ public class JefeWW : MonoBehaviour
     [SerializeField] public float AttkTimer;
     [SerializeField] public float CurrentAttkTimer;
     [SerializeField] public int AttkOrder;
+    [SerializeField] public int MaxShootingTimes;
 
     [Header("Vida Jefe")]
     //[Range(1,20)]
@@ -54,7 +55,7 @@ public class JefeWW : MonoBehaviour
             }
             if (animator.GetBool("RunStart"))
             {
-                //Debug.Log("Collision Corriendo");
+                Debug.Log("Collision Corriendo");
             }
         }
     }

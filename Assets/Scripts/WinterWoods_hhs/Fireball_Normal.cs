@@ -6,16 +6,14 @@ public class Fireball_Normal : MonoBehaviour
 {
     //[SerializeField] GameObject player;
     [SerializeField] float FireballSpeed;
+    [SerializeField] int Damage;
     Animator animator;
-    Rigidbody2D rigidbody;
-    CircleCollider2D CircleCollider;
+    new Rigidbody2D rigidbody;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
-        CircleCollider = GetComponent<CircleCollider2D>();
-
         ShootSpeed(FireballSpeed);
     }
 
@@ -27,27 +25,21 @@ public class Fireball_Normal : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Jefe_ww"))
+        animator.SetTrigger("Hit");
+        if (collision.collider.CompareTag("Player"))
         {
-            StartCoroutine(IgnoreBoss(CircleCollider));
-        }
-        else 
-        {
-            animator.SetTrigger("Hit");
-            if (collision.collider.CompareTag("Player"))
-            {
-                Debug.Log("HitPlayer");
-            }
-            
+            Debug.Log("HitPlayer");
         }
     }
 
+    /*
     IEnumerator IgnoreBoss(CircleCollider2D collider)
     {
         collider.isTrigger = true;
         yield return new WaitForSeconds(0.01f);
         collider.isTrigger = false;
     }
+    */
 
     void ShootSpeed(float Speed)
     {

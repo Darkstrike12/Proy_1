@@ -46101,7 +46101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1130674915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootController
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -46116,7 +46116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130674914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51, y: -0.76, z: 0}
+  m_LocalPosition: {x: 0.46, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46392,7 +46392,7 @@ GameObject:
   - component: {fileID: 2073558545}
   - component: {fileID: 2073558546}
   - component: {fileID: 2073558547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jefe_WW
   m_TagString: Jefe_ww
   m_Icon: {fileID: 0}
@@ -46543,6 +46543,7 @@ MonoBehaviour:
   AttkTimer: 3
   CurrentAttkTimer: 0
   AttkOrder: 0
+  MaxShootingTimes: 4
   BossMaxLife: 10
   BossCurrentLife: 0
   BossDmgTaken: 1
