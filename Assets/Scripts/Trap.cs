@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class Trap : MonoBehaviour
 {
     [SerializeField] bool InstaKill;
-    [SerializeField] int Damage;
+    [SerializeField] float Damage;
+    VidaSocial PlayerLife;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +21,20 @@ public class Trap : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hit");
-        if (InstaKill)
+        if (collision.collider.CompareTag("Player"))
         {
-            Debug.Log("InstaKill");
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (InstaKill)
+            {
+                Debug.Log("InstaKill");
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                PlayerLife = collision.gameObject.GetComponent<VidaSocial>();
+                PlayerLife.TakeDamage(Damage);
+            }
         }
     }
 }

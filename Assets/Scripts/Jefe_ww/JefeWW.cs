@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class JefeWW : MonoBehaviour
 {
     [Header("Referencias Externas")]
     [SerializeField] public GameObject Player;
     [SerializeField] public GameObject ShootControler;
+    VidaSocial PlayerLife;
 
     [Header("Variables")] 
     [SerializeField] public float Distance;
-    [SerializeField] public bool AllowDamage;
+    [SerializeField] public bool AllowTakeDamage;
     bool FaceRight = true;
     Animator animator;
     Rigidbody2D rigidbody;
 
     [Header("Ataque")]
+    [HideInInspector] public int AttkOrder;
     [SerializeField] public float AttkTimer;
     [SerializeField] public float CurrentAttkTimer;
-    [SerializeField] public int AttkOrder;
     [SerializeField] public int MaxShootingTimes;
+    [Range(0f, 100f)]
+    [SerializeField] float TackleDamage;
 
     [Header("Vida Jefe")]
     //[Range(1,20)]
@@ -33,6 +37,7 @@ public class JefeWW : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
+        PlayerLife = Player.GetComponent<VidaSocial>();
         CurrentAttkTimer = AttkTimer;
         BossCurrentLife = BossMaxLife;
     }
@@ -40,8 +45,6 @@ public class JefeWW : MonoBehaviour
     void Update()
     {
         Distance = Vector2.Distance(transform.position, Player.transform.position);
-        //ShootAngle = Mathf.Atan2(BulletDirection.x, BulletDirection.y) * Mathf.Rad2Deg;
-        //ShootControler.transform.position = Quaternion.Euler(Vector3.forward * ShootAngle);
         ShootControler.transform.right = Player.transform.position - ShootControler.transform.position;
     }
 
@@ -49,13 +52,13 @@ public class JefeWW : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            if(AllowDamage)
+            if(AllowTakeDamage)
             {
                 TakeDamage(BossDmgTaken);
             }
             if (animator.GetBool("RunStart"))
             {
-                Debug.Log("Collision Corriendo");
+                PlayerLife.TakeDamage(TackleDamage);
             }
         }
     }
@@ -79,10 +82,20 @@ public class JefeWW : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void SetRigidbodyStatic()
+    {
+        rigidbody.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void SetRigidbodyDynamic()
+    {
+        rigidbody.bodyType = RigidbodyType2D.Dynamic;
+    }
+
     void TakeDamage(int Damage)
     {
         BossCurrentLife -= Damage;
-        Debug.Log("Boss Life" + BossCurrentLife);
+        Debug.Log("Boss Life: " + BossCurrentLife);
         animator.SetTrigger("Hurt");
         if(BossCurrentLife <= 0)
         {

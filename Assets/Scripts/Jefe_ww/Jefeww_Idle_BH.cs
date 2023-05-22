@@ -11,8 +11,7 @@ public class Jefeww_Idle_BH : StateMachineBehaviour
     {
         jefe = animator.GetComponent<JefeWW>();
         jefe.CurrentAttkTimer = jefe.AttkTimer;
-        //animator.SetInteger("AttackOrder", Random.Range(1, 11));
-        animator.SetInteger("AttackOrder", Random.Range(6, 9));
+        animator.SetInteger("AttackOrder", Random.Range(1, 11));
         animator.SetInteger("ShootingTimes", Random.Range(1, jefe.MaxShootingTimes + 1));
         animator.SetInteger("ShootCounter", animator.GetInteger("ShootingTimes"));
         animator.ResetTrigger("ShootEnd");

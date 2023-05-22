@@ -8,6 +8,7 @@ TagManager:
   - gem
   - trap
   - Jefe_ww
+  - Fireball
   layers:
   - Default
   - TransparentFX

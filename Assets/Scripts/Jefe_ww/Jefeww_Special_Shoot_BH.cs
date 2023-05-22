@@ -2,40 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jefeww_Shoot_BH : StateMachineBehaviour
+public class Jefeww_Special_Shoot_BH : StateMachineBehaviour
 {
     JefeWW jefe;
-    //[SerializeField] public int ShootingTimes;
-    //int ShootCounter;
     [SerializeField] GameObject FireballPrefab;
+    [SerializeField] float ShootTime;
+    float CurrentShootTime;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         jefe = animator.GetComponent<JefeWW>();
-        jefe.SetRigidbodyStatic();
-        if (animator.GetInteger("ShootCounter") <= 0)
-        {
-            animator.SetTrigger("ShootEnd");
-            animator.ResetTrigger("ShootStart");
-        }
-        else
-        {
-            Instantiate(FireballPrefab, jefe.ShootControler.transform.position, jefe.ShootControler.transform.rotation);
-        }
+        CurrentShootTime = ShootTime;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         jefe.FacePlayer();
+        Instantiate(FireballPrefab, jefe.ShootControler.transform.position, jefe.ShootControler.transform.rotation);
+        CurrentShootTime -= Time.deltaTime;
+        if(CurrentShootTime <=0 )
+        {
+            animator.SetTrigger("Stun");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("ShootCounter", animator.GetInteger("ShootCounter") - 1);
-        jefe.SetRigidbodyDynamic();
+        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

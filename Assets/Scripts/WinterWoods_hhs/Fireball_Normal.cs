@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Fireball_Normal : MonoBehaviour
 {
-    //[SerializeField] GameObject player;
+    VidaSocial PlayerLife;
+
+    [Header("Parameters")]
     [SerializeField] float FireballSpeed;
-    [SerializeField] int Damage;
+    [SerializeField] float Damage;
+    
+
+    [Header("Lifetime")]
+    [SerializeField] float LifeTime;
+    [SerializeField] bool UseLifetime;
     Animator animator;
     new Rigidbody2D rigidbody;
 
@@ -20,7 +27,7 @@ public class Fireball_Normal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (UseLifetime) Destroy(gameObject, LifeTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,7 +35,8 @@ public class Fireball_Normal : MonoBehaviour
         animator.SetTrigger("Hit");
         if (collision.collider.CompareTag("Player"))
         {
-            Debug.Log("HitPlayer");
+            PlayerLife = collision.gameObject.GetComponent<VidaSocial>();
+            PlayerLife.TakeDamage(Damage);
         }
     }
 
