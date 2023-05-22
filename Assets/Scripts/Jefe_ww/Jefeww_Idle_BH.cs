@@ -11,8 +11,8 @@ public class Jefeww_Idle_BH : StateMachineBehaviour
     {
         jefe = animator.GetComponent<JefeWW>();
         jefe.CurrentAttkTimer = jefe.AttkTimer;
-        Debug.Log("Attack Timer"+jefe.CurrentAttkTimer);
-        animator.SetInteger("AttackOrder", Random.Range(1, 11));
+        //animator.SetInteger("AttackOrder", Random.Range(1, 11));
+        animator.SetInteger("AttackOrder", Random.Range(6, 9));
         //jefe.FacePlayer();
     }
 
@@ -46,7 +46,6 @@ public class Jefeww_Idle_BH : StateMachineBehaviour
                     animator.SetTrigger("SpecialShoot");
                     break;
             }
-            //CurrentAttkTimer = AttkTimer;
         }
     }
 

@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Jefeww_Shoot_BH : StateMachineBehaviour
 {
+    JefeWW jefe;
+    [SerializeField] int ShootingTimes;
+    [SerializeField] GameObject FireballPrefab;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        jefe = animator.GetComponent<JefeWW>();
+        Instantiate(FireballPrefab, jefe.ShootControler.transform.position, jefe.ShootControler.transform.rotation);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

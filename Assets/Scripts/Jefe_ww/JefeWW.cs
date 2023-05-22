@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class JefeWW : MonoBehaviour
 {
     [Header("Referencias Externas")]
-    [SerializeField] public Transform Player;
+    [SerializeField] public GameObject Player;
+    [SerializeField] public GameObject ShootControler;
 
     [Header("Variables")] 
     [SerializeField] public float Distance;
@@ -36,31 +38,10 @@ public class JefeWW : MonoBehaviour
     
     void Update()
     {
-        Distance = Vector2.Distance(transform.position, Player.position);
-        //CurrentAttkTimer -= Time.deltaTime;
-        /*
-        if(CurrentAttkTimer <= 0)
-        {
-            AttkOrder = animator.GetInteger("AttackOrder");
-            switch (AttkOrder)
-            {
-                case 1: case 2: case 3: case 4: case 5:
-                    //Correr
-                    animator.SetBool("RunStart", true);
-                    break;
-                case 6: case 7: case 8:
-                    //Disparo Normal
-                    animator.SetTrigger("ShootStart");
-                    break;
-                case 9: case 10:
-                    //Disparo Especial
-                    animator.SetTrigger("SpecialShoot");
-                    break;
-            }
-            //CurrentAttkTimer = AttkTimer;
-            animator.ResetTrigger("Hurt");
-        }
-        */
+        Distance = Vector2.Distance(transform.position, Player.transform.position);
+        //ShootAngle = Mathf.Atan2(BulletDirection.x, BulletDirection.y) * Mathf.Rad2Deg;
+        //ShootControler.transform.position = Quaternion.Euler(Vector3.forward * ShootAngle);
+        ShootControler.transform.right = Player.transform.position - ShootControler.transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -80,7 +61,7 @@ public class JefeWW : MonoBehaviour
 
     public void FacePlayer()
     {
-        if ((Player.position.x > transform.position.x && !FaceRight) || (Player.position.x < transform.position.x && FaceRight))
+        if ((Player.transform.position.x > transform.position.x && !FaceRight) || (Player.transform.position.x < transform.position.x && FaceRight))
         {
             FaceRight = !FaceRight;
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
