@@ -2,52 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jefeww_Idle_BH : StateMachineBehaviour
+public class Jefeww_Shoot_BH : StateMachineBehaviour
 {
-    private JefeWW jefe;
-
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        jefe = animator.GetComponent<JefeWW>();
-        jefe.CurrentAttkTimer = jefe.AttkTimer;
-        Debug.Log("Attack Timer"+jefe.CurrentAttkTimer);
-        animator.SetInteger("AttackOrder", Random.Range(1, 11));
-        //jefe.FacePlayer();
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        jefe.FacePlayer();
-        jefe.CurrentAttkTimer -= Time.deltaTime;
-        if (jefe.CurrentAttkTimer <= 0)
-        {
-            jefe.AttkOrder = animator.GetInteger("AttackOrder");
-            switch (jefe.AttkOrder)
-            {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                    //Correr
-                    animator.SetBool("RunStart", true);
-                    break;
-                case 6:
-                case 7:
-                case 8:
-                    //Disparo Normal
-                    animator.SetTrigger("ShootStart");
-                    break;
-                case 9:
-                case 10:
-                    //Disparo Especial
-                    animator.SetTrigger("SpecialShoot");
-                    break;
-            }
-            //CurrentAttkTimer = AttkTimer;
-        }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

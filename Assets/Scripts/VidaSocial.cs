@@ -26,7 +26,7 @@ public class VidaSocial : MonoBehaviour
         {
             animator.SetTrigger("hurt");
             Invoke("ResetHurtTrigger", 0.2f);
-            VidaActual = VidaActual -25;
+            VidaActual = VidaActual - 25;
             AudioHurt.Play();
         }
     }
@@ -38,7 +38,7 @@ public class VidaSocial : MonoBehaviour
             VidaActual = VidaActual + 10;
         }
     }
-   
+    
     void ResetHurtTrigger()
     {
         animator.ResetTrigger("hurt");
@@ -55,8 +55,14 @@ public class VidaSocial : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int DmgValue)
+    {
+
+    }
+
     public void Muerte()
     {
+        Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

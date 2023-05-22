@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Jefeww_Run_BH : StateMachineBehaviour
@@ -26,17 +27,18 @@ public class Jefeww_Run_BH : StateMachineBehaviour
         //animator.transform.position = Vector2.MoveTowards(animator.transform.position, jefe.Player.position, MovementSpeed * Time.deltaTime);
         rigidbody.velocity = new Vector2(MovementSpeed, rigidbody.velocity.y) * animator.transform.right;
         CurrentRunningTime -= Time.deltaTime;
-        Debug.Log("Running Timer" + CurrentRunningTime);
+        //Debug.Log("Running Timer" + CurrentRunningTime);
         if (CurrentRunningTime <= 0)
         {
-            animator.SetTrigger("RunFinish");
+            animator.SetTrigger("Stun");
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y); 
+        rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y);
+        animator.SetBool("RunStart", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JefeWW : MonoBehaviour
@@ -9,40 +10,71 @@ public class JefeWW : MonoBehaviour
 
     [Header("Variables")] 
     [SerializeField] public float Distance;
+    [SerializeField] public bool AllowDamage;
     bool FaceRight = true;
     Animator animator;
-    SpriteRenderer spriteRenderer;
+    Rigidbody2D rigidbody;
 
     [Header("Ataque")]
-    [SerializeField] float AttkTimer;
-    [SerializeField] float CurrentAttkTimer;
-    [SerializeField] int AttkOrder;
+    [SerializeField] public float AttkTimer;
+    [SerializeField] public float CurrentAttkTimer;
+    [SerializeField] public int AttkOrder;
 
     [Header("Vida Jefe")]
     //[Range(1,20)]
     [SerializeField] int BossMaxLife;
-    [SerializeField] int BossDmgTaken;
     [SerializeField] int BossCurrentLife;
-    
+    [SerializeField] int BossDmgTaken;
+
     void Start()
     {
-        animator= GetComponent<Animator>();
-        spriteRenderer= GetComponent<SpriteRenderer>();
-        AttkTimer = CurrentAttkTimer;
-        BossMaxLife = BossCurrentLife;
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody2D>();
+        CurrentAttkTimer = AttkTimer;
+        BossCurrentLife = BossMaxLife;
     }
     
     void Update()
     {
         Distance = Vector2.Distance(transform.position, Player.position);
-        CurrentAttkTimer -= Time.deltaTime;
-        //FacePlayer();
-
-        switch ( AttkOrder )
+        //CurrentAttkTimer -= Time.deltaTime;
+        /*
+        if(CurrentAttkTimer <= 0)
         {
-            case 1:
-                animator.SetTrigger("RunStart");
-                break;
+            AttkOrder = animator.GetInteger("AttackOrder");
+            switch (AttkOrder)
+            {
+                case 1: case 2: case 3: case 4: case 5:
+                    //Correr
+                    animator.SetBool("RunStart", true);
+                    break;
+                case 6: case 7: case 8:
+                    //Disparo Normal
+                    animator.SetTrigger("ShootStart");
+                    break;
+                case 9: case 10:
+                    //Disparo Especial
+                    animator.SetTrigger("SpecialShoot");
+                    break;
+            }
+            //CurrentAttkTimer = AttkTimer;
+            animator.ResetTrigger("Hurt");
+        }
+        */
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            if(AllowDamage)
+            {
+                TakeDamage(BossDmgTaken);
+            }
+            if (animator.GetBool("RunStart"))
+            {
+                //Debug.Log("Collision Corriendo");
+            }
         }
     }
 
@@ -57,11 +89,24 @@ public class JefeWW : MonoBehaviour
 
     void BossDeath()
     {
-
+        animator.SetTrigger("Death");
     }
 
-    void TakeDamage(int value)
+    void DestroyBosss()
     {
-        BossCurrentLife -= value;
+        Destroy(gameObject);
+    }
+
+    void TakeDamage(int Damage)
+    {
+        BossCurrentLife -= Damage;
+        Debug.Log("Boss Life" + BossCurrentLife);
+        animator.SetTrigger("Hurt");
+        if(BossCurrentLife <= 0)
+        {
+            Debug.Log("Derrotado");
+            rigidbody.bodyType = RigidbodyType2D.Static;
+            animator.SetTrigger("Death");
+        }
     }
 }
