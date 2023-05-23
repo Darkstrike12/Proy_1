@@ -15,6 +15,7 @@ public class Enemy_Death : MonoBehaviour
         animator = slime.GetComponent<Animator>();
         collider = slime.GetComponent<PolygonCollider2D>();
         rb = slime.GetComponent<Rigidbody2D>();
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

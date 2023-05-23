@@ -9,6 +9,7 @@ TagManager:
   - trap
   - Enemy
   - Enemy_Damaged
+  - Platfrom
   layers:
   - Default
   - TransparentFX

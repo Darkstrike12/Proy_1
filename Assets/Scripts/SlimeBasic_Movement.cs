@@ -12,7 +12,6 @@ public class SlimeBasic_Movement : MonoBehaviour
     private int currentPositionIndex = 0;
     public float speed = 3f;
     public float CurrentX = 1;
-    public Rigidbody2D rb;
 
     // Update is called once per frame
     void Update()
@@ -47,8 +46,8 @@ public class SlimeBasic_Movement : MonoBehaviour
             }
             Slime.transform.position = Vector3.MoveTowards(Slime.transform.position, Pposition, Time.deltaTime * speed);
         }
+    
     }
-
     private void flip()
     {
         Vector3 localScale = transform.localScale;
