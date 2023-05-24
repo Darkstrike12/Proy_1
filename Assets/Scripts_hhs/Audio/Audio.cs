@@ -13,4 +13,6 @@ public class Audio
     public float volume;
     public float pitch;
     public bool loop;
+
+    public AudioSource source;
 }

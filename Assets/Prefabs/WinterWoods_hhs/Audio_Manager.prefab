@@ -47,74 +47,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f8f50b27380e64b83a389d83f098af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnvironmentSfxGameObject: {fileID: 340891117928656912}
   Music:
   - Name: BGM
-    clip: {fileID: 8300000, guid: 1532c7e67c2d60c4c8780da14b7e8fcf, type: 3}
-    volume: 0.8
+    clip: {fileID: 8300000, guid: c2ba6095b0a927c4bb9c747e8a623084, type: 3}
+    volume: 0.7
     pitch: 1
     loop: 1
+    source: {fileID: 0}
   PlayerSfx:
   - Name: Player_Jump
     clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Player_Hurt
     clip: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Player_Death
     clip: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   EnvironmentSfx:
   - Name: Collect_Cherry
     clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Collect_Gem
     clip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Boss_Idle
     clip: {fileID: 8300000, guid: e6a09dd9c94d45d428bd3872acd1b721, type: 3}
     volume: 0.8
     pitch: 1
     loop: 1
+    source: {fileID: 0}
   - Name: Boss_Hurt
     clip: {fileID: 8300000, guid: 992c05c0015417442b41cbe18d0ae535, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Boss_Run
     clip: {fileID: 8300000, guid: 97c68dd9ab181b14b853e207ce91a903, type: 3}
     volume: 1
     pitch: 1.2
     loop: 0
+    source: {fileID: 0}
   - Name: Boss_Shooting
     clip: {fileID: 8300000, guid: 8f0d4fd1f4aba0a4187f7ab30add6ed2, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Boss_Special_Shooting
-    clip: {fileID: 8300000, guid: 97c68dd9ab181b14b853e207ce91a903, type: 3}
+    clip: {fileID: 8300000, guid: 04b31de15c7b35c4fbfbec1b0ef1c813, type: 3}
     volume: 1
-    pitch: 1.2
+    pitch: 1
     loop: 1
+    source: {fileID: 0}
   - Name: Fireball_Start
     clip: {fileID: 8300000, guid: 04b31de15c7b35c4fbfbec1b0ef1c813, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   - Name: Fireball_End
     clip: {fileID: 8300000, guid: 6f326378131dfb9428afa315f83b25dd, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Enemy_Die
+    clip: {fileID: 8300000, guid: 45442738a23b54b428603fad498105b9, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
   MusicSource: {fileID: 340891118333261512}
   PlayerSfxSource: {fileID: 340891117126205736}
   EnvironmentSfxSource: {fileID: 340891117928656919}

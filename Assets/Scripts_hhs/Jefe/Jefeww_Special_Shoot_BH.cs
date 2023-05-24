@@ -33,7 +33,7 @@ public class Jefeww_Special_Shoot_BH : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        AudioManager.instance.StopEnvironmentSfx("Boss_Special_Shooting");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

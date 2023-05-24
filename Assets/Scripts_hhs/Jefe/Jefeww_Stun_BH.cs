@@ -31,6 +31,7 @@ public class Jefeww_Stun_BH : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         jefe.AllowTakeDamage = false;
+        AudioManager.instance.StopEnvironmentSfx("Boss_Idle");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+    [SerializeField] GameObject EnvironmentSfxGameObject;
+
     public Audio[] Music, PlayerSfx, EnvironmentSfx;
     public AudioSource MusicSource, PlayerSfxSource, EnvironmentSfxSource;
 
@@ -20,6 +22,14 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        foreach (Audio a in  EnvironmentSfx)
+        {
+            a.source = EnvironmentSfxGameObject.AddComponent<AudioSource>();
+            a.source.clip = a.clip;
+            a.source.loop = a.loop;
+            a.source.volume = a.volume;
+            a.source.pitch = a.pitch;
         }
     }
 
@@ -70,10 +80,26 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            aud.source.Play();
+            /*
             EnvironmentSfxSource.clip = aud.clip;
             EnvironmentSfxSource.volume = aud.volume;
             EnvironmentSfxSource.pitch = aud.pitch;
             EnvironmentSfxSource.Play();
+            */
+        }
+    }
+
+    public void StopEnvironmentSfx(string name)
+    {
+        Audio aud = Array.Find(EnvironmentSfx, x => x.Name == name);
+        if (aud == null)
+        {
+            Debug.LogWarning("Audio " + name + " No Existe En AudioManager");
+        }
+        else
+        {
+            aud.source.Stop();
         }
     }
 
