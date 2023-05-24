@@ -9,6 +9,9 @@ TagManager:
   - trap
   - Jefe_ww
   - Fireball
+  - Enemy
+  - Enemy_Damaged
+  - Platform
   layers:
   - Default
   - TransparentFX
