@@ -6,14 +6,11 @@ public class EnemyBullet_Script : MonoBehaviour
 {
     private GameObject Player;
     private Rigidbody2D rb;
-    public AudioSource AudioHurt;
-    private Animator animator;
     public float force;
     private float timer;
     // Start is called before the first frame update
     void Start()
     {
-        animator = Player.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
 

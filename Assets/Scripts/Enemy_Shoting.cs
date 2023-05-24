@@ -20,7 +20,7 @@ public class Enemy_Shoting : MonoBehaviour
         
         float distancia = Vector2.Distance(transform.position, Player.transform.position);
 
-        if(distancia >= 11 ) {
+        if(distancia >= 11 && distancia <=40) {
             timer += Time.deltaTime;
             if (timer > 2)
             {

@@ -36,6 +36,12 @@ public class VidaSocial : MonoBehaviour
             VidaActual = VidaActual - 25;
             AudioHurt.Play();
         }
+        if (VidaActual <= 0)
+        {
+            animator.SetTrigger("Death");
+            rb.bodyType = RigidbodyType2D.Static;
+            AudioDeath.Play();
+        }
 
     }
 
@@ -55,12 +61,6 @@ public class VidaSocial : MonoBehaviour
     void Update()
     {
         vida.fillAmount = VidaActual / VidaMaxima;
-        if (VidaActual <= 0)
-        {
-            animator.SetTrigger("Death");
-            rb.bodyType = RigidbodyType2D.Static;
-            AudioDeath.Play();
-        }
     }
 
     public void Muerte()
