@@ -7,11 +7,11 @@ TagManager:
   - cherry
   - gem
   - trap
-  - Jefe_ww
-  - Fireball
   - Enemy
   - Enemy_Damaged
   - Platform
+  - Jefe_ww
+  - Fireball
   layers:
   - Default
   - TransparentFX
