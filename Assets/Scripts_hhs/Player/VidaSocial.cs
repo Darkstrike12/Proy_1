@@ -11,8 +11,6 @@ public class VidaSocial : MonoBehaviour
     public Image vida;
     public float VidaActual;
     public float VidaMaxima;
-    public AudioSource AudioHurt;
-    public AudioSource AudioDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +44,6 @@ public class VidaSocial : MonoBehaviour
         {
             animator.SetTrigger("Death");
             rb.bodyType = RigidbodyType2D.Static;
-            AudioDeath.Play();
         }
     }
 
@@ -54,6 +51,7 @@ public class VidaSocial : MonoBehaviour
     {
         VidaActual -= DmgValue;
         animator.SetTrigger("hurt");
+        AudioManager.instance.PlayPlayerSfx("Player_Hurt");
         Invoke("ResetHurtTrigger", 0.2f);
     }
 
@@ -65,6 +63,7 @@ public class VidaSocial : MonoBehaviour
     public void Muerte()
     {
         //Destroy(gameObject);
+        AudioManager.instance.PlayPlayerSfx("PLayer_Death");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
