@@ -43,7 +43,9 @@ public class VidaSocial : MonoBehaviour
         if (VidaActual <= 0)
         {
             animator.SetTrigger("Death");
+            AudioManager.instance.PlayPlayerSfx("Player_Death");
             rb.bodyType = RigidbodyType2D.Static;
+            return;
         }
     }
 

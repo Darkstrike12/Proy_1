@@ -15,6 +15,7 @@ public class Jefeww_Idle_BH : StateMachineBehaviour
         animator.SetInteger("ShootingTimes", Random.Range(1, jefe.MaxShootingTimes + 1));
         animator.SetInteger("ShootCounter", animator.GetInteger("ShootingTimes"));
         animator.ResetTrigger("ShootEnd");
+        AudioManager.instance.PlayEnvironmentSfx("Boss_Idle");
         //jefe.FacePlayer();
     }
 

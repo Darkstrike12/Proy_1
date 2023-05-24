@@ -13,6 +13,7 @@ public class Jefeww_Stun_BH : StateMachineBehaviour
     {
         jefe = animator.GetComponent<JefeWW>();
         CurrentStunTime = StunTime;
+        AudioManager.instance.PlayEnvironmentSfx("Boss_Idle");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

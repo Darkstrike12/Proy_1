@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87aba6eaa11ddd641bded7c9f105f713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3970570481065376090, guid: 159a1f59a583d514a85a81ae3bab3973, type: 3}
   FireballSpeed: 12
   Damage: 10
+  MuteSound: 1
   LifeTime: 3
   UseLifetime: 1
 --- !u!50 &5898186136580627791

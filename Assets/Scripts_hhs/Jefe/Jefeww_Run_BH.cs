@@ -17,7 +17,7 @@ public class Jefeww_Run_BH : StateMachineBehaviour
         jefe = animator.GetComponent<JefeWW>();
         rigidbody = jefe.GetComponentInParent<Rigidbody2D>();
         CurrentRunningTime = RunningTime;
-
+        AudioManager.instance.PlayEnvironmentSfx("Boss_Run");
         jefe.FacePlayer();
     }
 

@@ -9,6 +9,7 @@ public class Fireball_Normal : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] float FireballSpeed;
     [SerializeField] float Damage;
+    [SerializeField] bool MuteSound;
     
 
     [Header("Lifetime")]
@@ -22,6 +23,7 @@ public class Fireball_Normal : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         ShootSpeed(FireballSpeed);
+        if (!MuteSound) AudioManager.instance.PlayEnvironmentSfx("Fireball_Start");
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Fireball_Normal : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.SetTrigger("Hit");
+        if (!MuteSound) AudioManager.instance.PlayEnvironmentSfx("Fireball_End");
         if (collision.collider.CompareTag("Player"))
         {
             PlayerLife = collision.gameObject.GetComponent<VidaSocial>();

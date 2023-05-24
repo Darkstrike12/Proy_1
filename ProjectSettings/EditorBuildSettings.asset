@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Nivel_1.unity
+    guid: 5063a6c536efaaf438da33bdf67495d9
+  - enabled: 1
+    path: Assets/Scenes/Nivel_2.unity
+    guid: 1aea924d9815f334db3432d78ada19d7
+  - enabled: 1
+    path: Assets/Scenes/Nivel_3.unity
+    guid: a3337a95161946f4581b157fbb46ec7d
+  - enabled: 1
+    path: Assets/Scenes/Boss_Room_WinterWoods.unity
+    guid: 0f7a84da91380ce4ba81b86ac37ee5dd
   m_configObjects: {}

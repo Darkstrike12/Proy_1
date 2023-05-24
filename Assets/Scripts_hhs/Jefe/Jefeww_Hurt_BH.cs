@@ -10,6 +10,7 @@ public class Jefeww_Hurt_BH : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         jefe = animator.GetComponent<JefeWW>();
+        AudioManager.instance.PlayEnvironmentSfx("Boss_Hurt");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

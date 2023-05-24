@@ -13,6 +13,7 @@ public class Jefeww_Special_Shoot_BH : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         jefe = animator.GetComponent<JefeWW>();
+        AudioManager.instance.PlayEnvironmentSfx("Boss_Special_Shooting");
         CurrentShootTime = ShootTime;
     }
 
@@ -20,6 +21,7 @@ public class Jefeww_Special_Shoot_BH : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         jefe.FacePlayer();
+        AudioManager.instance.PlayEnvironmentSfx("Boss_Shooting");
         Instantiate(FireballPrefab, jefe.ShootControler.transform.position, jefe.ShootControler.transform.rotation);
         CurrentShootTime -= Time.deltaTime;
         if(CurrentShootTime <=0 )
