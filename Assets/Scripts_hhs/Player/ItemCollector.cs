@@ -6,8 +6,6 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cherriesText;
     [SerializeField] private TextMeshProUGUI gemsText;
     [SerializeField] private float delay = .4f;
-    public AudioSource cherriesAudioSource;
-    public AudioSource gemsAudioSource;
     private Animator animator;
     private int cherries = 0;
     private int gems = 0;
@@ -22,7 +20,7 @@ public class ItemCollector : MonoBehaviour
             cherries++;
             cherriesText.text = cherries.ToString();
             Destroy(collision.gameObject, delay);
-            cherriesAudioSource.Play();
+            AudioManager.instance.PlayEnvironmentSfx("Collect_Cherry");
         }
         if (collision.gameObject.CompareTag("gem"))
         {
@@ -31,7 +29,7 @@ public class ItemCollector : MonoBehaviour
             gems++;
             gemsText.text = gems.ToString();
             Destroy(collision.gameObject, delay);
-            gemsAudioSource.Play();
+            AudioManager.instance.PlayEnvironmentSfx("Collect_Gem");
         }
     }
 }

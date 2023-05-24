@@ -18,7 +18,6 @@ public class movimiento : MonoBehaviour
     [SerializeField] private int jumpCounter = 1;
     public LayerMask jumpGround;
     public Transform GroundTransform;
-    public AudioSource JumpAudio;
 
 
     // Start is called before the first frame update
@@ -38,7 +37,7 @@ public class movimiento : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpCounter < jumps)
         {
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
-            JumpAudio.Play();
+            AudioManager.instance.PlayPlayerSfx("Player_Jump");
             jumpCounter++;
         }
         if (Grounded()) jumpCounter = 0;
