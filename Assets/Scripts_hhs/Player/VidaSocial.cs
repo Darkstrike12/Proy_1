@@ -17,20 +17,6 @@ public class VidaSocial : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        VidaActual = VidaMaxima;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("cherry"))
-        {
-            VidaActual = VidaActual + 10;
-        }
-    }
-    
-    void ResetHurtTrigger()
-    {
-        animator.ResetTrigger("hurt");
     }
 
     void Update()
@@ -45,7 +31,33 @@ public class VidaSocial : MonoBehaviour
             animator.SetTrigger("Death");
             AudioManager.instance.PlayPlayerSfx("Player_Death");
             rb.bodyType = RigidbodyType2D.Static;
-            return;
+            VidaActual = 1;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetTrigger("hurt");
+            Invoke("ResetHurtTrigger", 0.2f);
+            VidaActual = VidaActual - 25;
+        }
+        /*
+        if (VidaActual <= 0)
+        {
+            animator.SetTrigger("Death");
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+        */
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("cherry"))
+        {
+            VidaActual = VidaActual + 10;
         }
     }
 
@@ -57,15 +69,13 @@ public class VidaSocial : MonoBehaviour
         Invoke("ResetHurtTrigger", 0.2f);
     }
 
-    public void Heal(float HealValue)
+    void ResetHurtTrigger()
     {
-        VidaActual += HealValue;
+        animator.ResetTrigger("hurt");
     }
 
     public void Muerte()
     {
-        //Destroy(gameObject);
-        AudioManager.instance.PlayPlayerSfx("PLayer_Death");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

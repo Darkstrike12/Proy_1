@@ -41,6 +41,7 @@ public class movimiento : MonoBehaviour
             jumpCounter++;
         }
         if (Grounded()) jumpCounter = 0;
+
         UpdateAnimationState();
     }
     private void UpdateAnimationState()
@@ -64,6 +65,7 @@ public class movimiento : MonoBehaviour
         {
 
             state = Movement.Jump;
+
         }
         if (rb.velocity.y < -.1f)
         {

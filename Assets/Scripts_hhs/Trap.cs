@@ -28,7 +28,7 @@ public class Trap : MonoBehaviour
             if (InstaKill)
             {
                 Debug.Log("InstaKill");
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else
             {
