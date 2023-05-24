@@ -33,7 +33,7 @@ public class SlimeBasic_Movement : MonoBehaviour
             float distancia = Vector2.Distance(transform.position, Player.transform.position);
             Vector3 Pposition = Player.transform.position;
             CurrentX = Player.transform.position.x - Slime.transform.position.x;
-            if(CurrentX < 0)
+            if(CurrentX > 0)
             {
                 Vector3 Flip = Slime.transform.localScale;
                 Flip.x = -1;
@@ -46,7 +46,7 @@ public class SlimeBasic_Movement : MonoBehaviour
                 Slime.transform.localScale = Flip;
             }
             Slime.transform.position = Vector3.MoveTowards(Slime.transform.position, Pposition, Time.deltaTime * speed);
-            if(distancia >= 40)
+            if(distancia > 20)
             {
                 Destroy(Slime.gameObject);
             }

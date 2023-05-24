@@ -192,9 +192,9 @@ MonoBehaviour:
   Player: {fileID: 0}
   ShootControler: {fileID: 5781286858954082845}
   Distance: 0
-  AllowDamage: 0
+  AllowTakeDamage: 0
   AttkOrder: 0
-  AttkTimer: 3
+  AttkTimer: 1.5
   CurrentAttkTimer: 0
   MaxShootingTimes: 4
   TackleDamage: 75

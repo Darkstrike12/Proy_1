@@ -489,6 +489,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2034256255}
+    - target: {fileID: 5781286859890282220, guid: acb2f4ba293ea5f43b333770dbc727f4, type: 3}
+      propertyPath: BossMaxLife
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5781286859890282223, guid: acb2f4ba293ea5f43b333770dbc727f4, type: 3}
       propertyPath: m_RootOrder
       value: 1
