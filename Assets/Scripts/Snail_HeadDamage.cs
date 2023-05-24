@@ -21,6 +21,7 @@ public class Snail_HeadDamage : MonoBehaviour
         StartCoroutine("Timer");
         if (collision.gameObject.tag == "Player" && hit == 2)
         {
+            AudioManager.instance.PlayEnvironmentSfx("Enemy_Die");
             animator.SetTrigger("Death");
             StartCoroutine("Crono");
         }

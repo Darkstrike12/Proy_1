@@ -25,6 +25,7 @@ public class Ghost_HeadDamage : MonoBehaviour
     {
 
         yield return new WaitForSeconds(.5f);
+        AudioManager.instance.PlayEnvironmentSfx("Enemy_Die");
         animator.SetTrigger("Death");
         yield return new WaitForSeconds(.5f);
         Destroy(Ghost.gameObject);

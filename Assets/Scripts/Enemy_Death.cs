@@ -45,6 +45,7 @@ public class Enemy_Death : MonoBehaviour
     IEnumerator Timer()
     {
         yield return new WaitForSeconds(0.8f);
+        AudioManager.instance.PlayEnvironmentSfx("Enemy_Die");
         animator.SetTrigger("Killed");
         yield return new WaitForSeconds(0.4f);
         gameObject.GetComponent<SlimeBasic_Movement>().Fase2 = true;

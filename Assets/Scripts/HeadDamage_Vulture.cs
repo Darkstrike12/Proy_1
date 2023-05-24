@@ -19,6 +19,7 @@ public class HeadDamage_Vulture : MonoBehaviour
 
         if (collision.gameObject.tag == "Player" && damaged == 2)
         {
+            AudioManager.instance.PlayEnvironmentSfx("Enemy_Die");
             animator.SetTrigger("Killed");
             StartCoroutine("Timer");
         }
